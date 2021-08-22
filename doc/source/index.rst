@@ -3,8 +3,9 @@ libmrhpsb
 .. image:: banner.png
    :align: center
    
-libmrhpsb is an open source library which is intended to help developing 
-platform services which make use of a callback oriented design.
+The libmrhpsb library is used for platform service development. It includes 
+the event send loop as well as a callback structure which allows to react to 
+events.
 
 This documentation includes listings for the internal functions, enumerations, 
 etc. used by the library itself. These are not meant to be used directly for 
