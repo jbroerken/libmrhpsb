@@ -62,7 +62,7 @@ set(SRC_DIR_PATH "${CMAKE_SOURCE_DIR}/src/")
 set(INCLUDE_DIR_PATH "${CMAKE_SOURCE_DIR}/include/")
 
 set(SRC_LIST_DEFAULT_CALLBACK "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/Callback/MRH_PSBReset.cpp"
-							  "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/Callback/MRH_PSBReset.h")
+                              "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/Callback/MRH_PSBReset.h")
 
 set(SRC_LIST_GLOBAL "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/MRH_ThreadPool.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/MRH_ThreadPool.h"
@@ -94,9 +94,9 @@ set(LIB_BIN_LIST "${LIB_DIR_PATH}/libmrhev.a"
                  "${LIB_DIR_PATH}/libmrhcevs.a"
                  "${LIB_DIR_PATH}/libmrhbf.a")
 set(LIB_INCLUDE_LIST "${INCLUDE_DIR_PATH}/mrhshared"
-					 "${INCLUDE_DIR_PATH}/libmrhev"
-					 "${INCLUDE_DIR_PATH}/libmrhcevs"
-					 "${INCLUDE_DIR_PATH}/libmrhbf")
+                     "${INCLUDE_DIR_PATH}/libmrhev"
+                     "${INCLUDE_DIR_PATH}/libmrhcevs"
+                     "${INCLUDE_DIR_PATH}/libmrhbf")
 					 
 #########################################################################
 #
@@ -110,26 +110,26 @@ set(LIB_INCLUDE_LIST "${INCLUDE_DIR_PATH}/mrhshared"
 #  The target(s) to build.
 ###
 add_library(libmrhpsb_Shared SHARED ${SRC_LIST_DEFAULT_CALLBACK}
-					  			    ${SRC_LIST_GLOBAL})
+                                    ${SRC_LIST_GLOBAL})
 set_target_properties(libmrhpsb_Shared
-    				  PROPERTIES
-					  PREFIX ""
-					  OUTPUT_NAME "libmrhpsb"
-					  SUFFIX ".so"
-    				  ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
-    				  LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
-    				  RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR_PATH})
+                      PROPERTIES
+                      PREFIX ""
+                      OUTPUT_NAME "libmrhpsb"
+                      SUFFIX ".so"
+                      ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
+                      LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
+                      RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR_PATH})
 					  
 add_library(libmrhpsb_Static STATIC ${SRC_LIST_DEFAULT_CALLBACK}
-					   			    ${SRC_LIST_GLOBAL})
+                                    ${SRC_LIST_GLOBAL})
 set_target_properties(libmrhpsb_Static
-    				  PROPERTIES
-					  PREFIX ""
-					  OUTPUT_NAME "libmrhpsb"
-					  SUFFIX ".a"
-    				  ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
-    				  LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
-    				  RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR_PATH})
+                      PROPERTIES
+                      PREFIX ""
+                      OUTPUT_NAME "libmrhpsb"
+                      SUFFIX ".a"
+                      ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
+                      LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR_PATH}
+                      RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR_PATH})
 
 ###
 #  Required Libraries
