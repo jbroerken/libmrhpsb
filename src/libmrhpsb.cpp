@@ -26,7 +26,7 @@
 // External
 
 // Project
-#include "../../include/libmrhpsb/libmrhpsb.h"
+#include "../include/libmrhpsb/libmrhpsb.h"
 #include "./libmrhpsb/Event/MRH_EventHandler.h"
 #include "./libmrhpsb/ThreadPool/MRH_ThreadPool.h"
 
