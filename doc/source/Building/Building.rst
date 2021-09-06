@@ -7,19 +7,17 @@ build process to create the library from source.
 
 Supported Platforms
 -------------------
-The currently supported platforms for libmrhpsb are the same as the ones listed 
-for all MRH platform projects: Debian-based Linux and macOS. 
-
-The main targets for this library are Debian-based Linux distributions.
+The supported platforms for libmrhpsb are UNIX-likes, primarily 
+Debian-based GNU/Linux Distributions like the Rapsberry Pi OS.
 
 Dependencies
 ------------
 This library has the following dependencies:
 
-* mrhshared
-* libmrhbf
-* libmrhev
-* libmrhcevs
+* mrhshared: https://github.com/jbroerken/mrhshared/
+* libmrhbf: https://github.com/jbroerken/libmrhbf/
+* libmrhev: https://github.com/jbroerken/libmrhev/
+* libmrhcevs: https://github.com/jbroerken/libmrhcevs/
 
 Build Tools
 -----------
@@ -39,6 +37,5 @@ The build process should be relatively straightforward:
 
 1. Aqquire dependencies.
 2. Compile Makefiles with the included CMakeLists.txt
-3. Move to the "build" folder and run make. This creates both static and 
-   shared libraries.
+3. Move to the "build" folder and run make.
 4. Install the compiled library and its header files.
