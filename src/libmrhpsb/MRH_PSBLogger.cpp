@@ -31,10 +31,10 @@
 
 // Pre-defined
 #ifndef MRH_PLATFORM_SERVICE_LOG_FILE_PATH_BASE
-    #define MRH_PLATFORM_SERVICE_LOG_FILE_PATH_BASE "/var/log/mrh/mrhpservice/mrhpservice_"
+    #define MRH_PLATFORM_SERVICE_LOG_FILE_PATH_BASE "/var/log/mrh/mrhpservice_"
 #endif
 #ifndef MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE
-    #define MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE "/var/log/mrh/mrhpservice/bt_mrhpservice_"
+    #define MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE "/var/log/mrh/bt_mrhpservice_"
 #endif
 #ifndef MRH_LOGGER_PRINT_CLI
     #define MRH_LOGGER_PRINT_CLI 0
