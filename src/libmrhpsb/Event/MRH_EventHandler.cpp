@@ -30,6 +30,11 @@
 #include "../../../include/libmrhpsb/libmrhpsb/MRH_EventStorage.h"
 #include "../../../include/libmrhpsb/libmrhpsb/MRH_PSBLogger.h"
 
+// Pre-defined
+#ifndef MRH_PLATFORM_SERVICE_LOG_EVENTS
+    #define MRH_PLATFORM_SERVICE_LOG_EVENTS 0
+#endif
+
 
 //*************************************************************************************
 // Constructor / Destructor
@@ -148,6 +153,10 @@ void MRH_EventHandler::SendEvents() noexcept
         return;
     }
     
+#if MRH_PLATFORM_SERVICE_LOG_EVENTS > 0
+    MRH_PSBLogger& c_Logger = MRH_PSBLogger::Singleton();
+#endif
+    
     // Add as many events to queue as possible
     // NOTE: No limit, platform component and libmrhs protection
     MRH_EventStorage& s_EventStorage = MRH_EventStorage::Singleton();
@@ -155,6 +164,13 @@ void MRH_EventHandler::SendEvents() noexcept
     
     while ((p_Event = s_EventStorage.GetEvent()) != NULL)
     {
+#if MRH_PLATFORM_SERVICE_LOG_EVENTS > 0
+        c_Logger.Log(MRH_PSBLogger::INFO, "Sending event [ " +
+                                          std::to_string(p_Event->u32_Type) +
+                                          " ] to mrhcore!",
+                     "MRH_EventHandler.cpp", __LINE__);
+#endif
+        
         if (MRH_AddEvent(p_OutputEventQueue, &p_Event) != NULL)
         {
             break;
@@ -185,6 +201,10 @@ std::vector<MRH_Event*>& MRH_EventHandler::RecieveEvents() noexcept
         return v_Recieved;
     }
     
+#if MRH_PLATFORM_SERVICE_LOG_EVENTS > 0
+    MRH_PSBLogger& c_Logger = MRH_PSBLogger::Singleton();
+#endif
+    
     // Recieve events
     if (MRH_RecieveEvents(p_InputEventQueue, s32_QueueTimeoutMS) > 0)
     {
@@ -192,6 +212,13 @@ std::vector<MRH_Event*>& MRH_EventHandler::RecieveEvents() noexcept
         
         while ((p_Event = MRH_GetEvent(p_InputEventQueue)) != NULL)
         {
+#if MRH_PLATFORM_SERVICE_LOG_EVENTS > 0
+            c_Logger.Log(MRH_PSBLogger::INFO, "Recieved event [ " +
+                                              std::to_string(p_Event->u32_Type) +
+                                              " ] from mrhcore!",
+                         "MRH_EventHandler.cpp", __LINE__);
+#endif
+            
             if (v_Recieved.size() == v_Recieved.capacity())
             {
                 v_Recieved.reserve(v_Recieved.capacity() + us_ReserveStep);

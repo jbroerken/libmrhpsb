@@ -29,6 +29,11 @@
 #include "./Callback/MRH_PSBReset.h"
 #include "../../../include/libmrhpsb/libmrhpsb/MRH_PSBLogger.h"
 
+// Pre-defined
+#ifndef MRH_PLATFORM_SERVICE_LOG_EVENTS
+    #define MRH_PLATFORM_SERVICE_LOG_EVENTS 0
+#endif
+
 
 //*************************************************************************************
 // Constructor / Destructor
@@ -167,7 +172,9 @@ void MRH_ThreadPool::Update(MRH_ThreadPool* p_Instance) noexcept
         
         if (CBList == m_Callback.end() || CBList->second.size() == 0)
         {
-            c_Logger.Log(MRH_PSBLogger::WARNING, "No callback for event " + std::to_string(p_Event->GetType()) + "!",
+            c_Logger.Log(MRH_PSBLogger::WARNING, "No callback for event [ " +
+                                                 std::to_string(p_Event->GetType()) +
+                                                 " ]!",
                          "ThreadPool.h", __LINE__);
             delete p_Event;
             continue;
@@ -176,6 +183,12 @@ void MRH_ThreadPool::Update(MRH_ThreadPool* p_Instance) noexcept
         // Perform job on matching callbacks
         for (auto& Callback : CBList->second)
         {
+#if MRH_PLATFORM_SERVICE_LOG_EVENTS > 0
+            c_Logger.Log(MRH_PSBLogger::INFO, "Performing callback for event [ " +
+                                              std::to_string(p_Event->GetType()) +
+                                              " ] ...",
+                         "ThreadPool.h", __LINE__);
+#endif
             Callback->Callback(p_Event, u32_GroupID);
         }
         
