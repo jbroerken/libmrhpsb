@@ -24,4 +24,4 @@ Internal Macros
   _Internal/libmrhpsb_Directory/MRH_PSBLogger/MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE
   _Internal/libmrhpsb_Directory/MRH_PSBLogger/MRH_LOGGER_PRINT_CLI
   _Internal/libmrhpsb_Directory/MRH_EventStorage/MRH_EVENT_STORAGE_RESERVE_STEP
-  _Internal/libmrhpsb_Directory/ThreadPool/Callback/MRH_PSBReset/MRH_LOCALE_FILE_PATH
+  _Internal/libmrhpsb_Directory/MRH_Locale/MRH_LOCALE_FILE_PATH

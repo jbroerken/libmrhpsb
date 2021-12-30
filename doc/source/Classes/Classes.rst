@@ -23,6 +23,5 @@ Internal Classes
 .. toctree::
   :maxdepth: 1
   
-  _Internal/libmrhpsb_Directory/ThreadPool/Callback/MRH_PSBReset
   _Internal/libmrhpsb_Directory/ThreadPool/MRH_ThreadPool
   _Internal/libmrhpsb_Directory/Event/MRH_EventHandler

@@ -51,11 +51,9 @@ public:
      *  Default constructor.
      *
      *  \param us_ThreadCount The number of worker threads to use.
-     *  \param b_AddDefaults Wether to add default library callbacks or not.
      */
     
-    MRH_ThreadPool(size_t us_ThreadCount,
-                   bool b_AddDefaults);
+    MRH_ThreadPool(size_t us_ThreadCount);
     
     /**
      *  Copy constructor. Disabled for this class.

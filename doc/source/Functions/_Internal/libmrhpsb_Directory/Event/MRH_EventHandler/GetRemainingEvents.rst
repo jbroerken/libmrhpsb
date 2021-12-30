@@ -9,7 +9,7 @@ The function definition can be found in the following file:
 
 .. code-block:: c
 
-    #include "libmrhpsb/MRH_EventHandler.h"
+    #include "libmrhpsb/Event/MRH_EventHandler.h"
 
 
 Syntax

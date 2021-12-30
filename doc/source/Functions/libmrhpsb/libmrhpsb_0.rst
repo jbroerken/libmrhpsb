@@ -19,8 +19,7 @@ Syntax
     libmrhpsb(std::string const& s_Identifier,
               int argc,
               const char* argv[],
-              size_t us_ThreadCount,
-              bool b_AddDefault);
+              size_t us_ThreadCount);
 
 
 Parameters
@@ -38,8 +37,6 @@ Parameters
       - The binary argument list.
     * - us_ThreadCount
       - The number of threads to use for callback performing.
-    * - b_AddDefault
-      - If default library callbacks should be added.
       
 
 Return Value

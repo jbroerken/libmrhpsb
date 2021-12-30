@@ -53,9 +53,6 @@ Internal Functions
 .. toctree::
   :maxdepth: 1
   
-  _Internal/libmrhpsb_Directory/ThreadPool/Callback/MRH_PSBReset/MRH_PSBReset_0
-  _Internal/libmrhpsb_Directory/ThreadPool/Callback/MRH_PSBReset/~MRH_PSBReset
-  _Internal/libmrhpsb_Directory/ThreadPool/Callback/MRH_PSBReset/Callback
   _Internal/libmrhpsb_Directory/ThreadPool/MRH_ThreadPool/MRH_ThreadPool_0
   _Internal/libmrhpsb_Directory/ThreadPool/MRH_ThreadPool/~MRH_ThreadPool
   _Internal/libmrhpsb_Directory/ThreadPool/MRH_ThreadPool/AddCallback
@@ -69,3 +66,4 @@ Internal Functions
   _Internal/libmrhpsb_Directory/Event/MRH_EventHandler/Exit
   _Internal/libmrhpsb_Directory/Event/MRH_EventHandler/GetRemainingEvents
   _Internal/libmrhpsb_Directory/Event/MRH_EventHandler/CheckLibraryError
+  _Internal/libmrhpsb_Directory/MRH_Locale/LoadSystemLocale

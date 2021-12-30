@@ -1,5 +1,5 @@
 /**
- *  MRH_PSBReset.cpp
+ *  MRH_Locale.cpp
  *
  *  This file is part of the MRH project.
  *  See the AUTHORS file for Copyright information.
@@ -28,8 +28,8 @@
 #include <libmrhbf.h>
 
 // Project
-#include "./MRH_PSBReset.h"
-#include "../../../../include/libmrhpsb/libmrhpsb/MRH_PSBLogger.h"
+#include "./MRH_Locale.h"
+#include "../../include/libmrhpsb/libmrhpsb/MRH_PSBLogger.h"
 
 // Pre-defined
 #ifndef MRH_LOCALE_FILE_PATH
@@ -68,28 +68,16 @@ namespace
 
 
 //*************************************************************************************
-// Constructor / Destructor
+// Locale
 //*************************************************************************************
 
-MRH_PSBReset::MRH_PSBReset() noexcept
-{
-    std::setlocale(LC_ALL, p_DefaultLocale);
-}
-
-MRH_PSBReset::~MRH_PSBReset() noexcept
-{}
-
-//*************************************************************************************
-// Callback
-//*************************************************************************************
-
-void MRH_PSBReset::Callback(const MRH_EVBase* p_Event, MRH_Uint32 u32_GroupID) noexcept
+void MRH_Locale::LoadSystemLocale() noexcept
 {
     MRH_PSBLogger& c_Logger = MRH_PSBLogger::Singleton();
     c_Logger.Log(MRH_PSBLogger::INFO, "Reading locale file " +
                                       std::string(MRH_LOCALE_FILE_PATH) +
                                       "...",
-                 "MRH_PSBReset.cpp", __LINE__);
+                 "MRH_Locale.cpp", __LINE__);
     
     try
     {
@@ -107,18 +95,23 @@ void MRH_PSBReset::Callback(const MRH_EVBase* p_Event, MRH_Uint32 u32_GroupID) n
             
             if (s_Locale.compare(std::setlocale(LC_ALL, NULL)) != 0)
             {
-                throw MRH_PSBException("Failed to update locale!");
+                c_Logger.Log(MRH_PSBLogger::INFO, "Failed to set configuration locale!",
+                             "MRH_Locale.cpp", __LINE__);
+                
+                std::setlocale(LC_ALL, p_DefaultLocale);
             }
             
-            c_Logger.Log(MRH_PSBLogger::INFO, "Locale set to " + s_Locale + ".",
-                         "MRH_PSBReset.cpp", __LINE__);
             break;
         }
     }
     catch (std::exception& e) // + MRH_BFException
     {
         c_Logger.Log(MRH_PSBLogger::WARNING, std::string(e.what()) + ", using default locale.",
-                     "MRH_PSBReset.cpp", __LINE__);
+                     "MRH_Locale.cpp", __LINE__);
+        
         std::setlocale(LC_ALL, p_DefaultLocale);
     }
+    
+    c_Logger.Log(MRH_PSBLogger::INFO, "Locale set to " + std::string(std::setlocale(LC_ALL, NULL)) + ".",
+                 "MRH_Locale.cpp", __LINE__);
 }

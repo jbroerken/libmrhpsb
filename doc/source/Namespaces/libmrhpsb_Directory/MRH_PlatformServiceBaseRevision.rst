@@ -1,7 +1,7 @@
 MRH_PlatformServiceBaseRevision
 ===============================
-The MRH_AppBaseReviMRH_PlatformServiceBaseRevisionion namespace contains 
-functions related to the library version.
+The MRH_PlatformServiceBaseRevision namespace contains functions related 
+to the library version.
 
 Header
 ------

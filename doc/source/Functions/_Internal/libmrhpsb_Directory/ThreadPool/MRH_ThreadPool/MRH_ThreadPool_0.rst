@@ -16,8 +16,7 @@ Syntax
 ------
 .. code-block:: c
 
-    MRH_ThreadPool(size_t us_ThreadCount,
-                   bool b_AddDefaults);
+    MRH_ThreadPool(size_t us_ThreadCount);
 
 
 Parameters
@@ -29,8 +28,6 @@ Parameters
       - Description
     * - us_ThreadCount
       - The number of worker threads to create.
-    * - b_AddDefaults
-      - If default callbacks (like PSBReset) should be added on creation.
 
 
 Return Value

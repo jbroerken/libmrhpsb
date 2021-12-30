@@ -61,15 +61,13 @@ file(MAKE_DIRECTORY ${BUILD_DIR_PATH})
 set(SRC_DIR_PATH "${CMAKE_SOURCE_DIR}/src/")
 set(INCLUDE_DIR_PATH "${CMAKE_SOURCE_DIR}/include/")
 
-set(SRC_LIST_DEFAULT_CALLBACK "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/Callback/MRH_PSBReset.cpp"
-                              "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/Callback/MRH_PSBReset.h")
-
 set(SRC_LIST_GLOBAL "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/MRH_ThreadPool.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb/ThreadPool/MRH_ThreadPool.h"
                     "${SRC_DIR_PATH}/libmrhpsb/Event/MRH_EventHandler.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb/Event/MRH_EventHandler.h"
-                    "${SRC_DIR_PATH}/libmrhpsb/MRH_Callback.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb/MRH_EventStorage.cpp"
+                    "${SRC_DIR_PATH}/libmrhpsb/MRH_Locale.cpp"
+                    "${SRC_DIR_PATH}/libmrhpsb/MRH_Locale.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb/MRH_PSBLogger.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb/MRH_PSBRevision.cpp"
                     "${SRC_DIR_PATH}/libmrhpsb.cpp"
@@ -98,8 +96,7 @@ set(PUBLIC_API_DIR_PATH "${INCLUDE_DIR_PATH}/libmrhpsb")
 #  ------
 #  The target(s) to build.
 ###
-add_library(libmrhpsb_Shared SHARED ${SRC_LIST_DEFAULT_CALLBACK}
-                                    ${SRC_LIST_GLOBAL})
+add_library(libmrhpsb_Shared SHARED ${SRC_LIST_GLOBAL})
 set_target_properties(libmrhpsb_Shared
                       PROPERTIES
                       PREFIX "lib"
@@ -134,7 +131,7 @@ target_link_libraries(libmrhpsb_Shared PUBLIC mrhcevs)
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOCALE_FILE_PATH="/usr/local/etc/mrh/MRH_Locale.conf")
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_FILE_PATH_BASE="/var/log/mrh/mrhpservice_")
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE="/var/log/mrh/bt_mrhpservice_")
-target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOGGER_PRINT_CLI=0)
+target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOGGER_PRINT_CLI=1)
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_EVENT_STORAGE_RESERVE_STEP=100)
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_EVENTS=0)
 

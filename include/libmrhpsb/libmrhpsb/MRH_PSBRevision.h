@@ -69,4 +69,5 @@ namespace MRH_PlatformServiceBaseRevision
 #define MRH_PLATFORM_SERVICE_BASE_LIB_VERSION_MINOR 0
 #define MRH_PLATFORM_SERVICE_BASE_LIB_VERSION_PATCH 0
 
+
 #endif /* MRH_PSBRevision_h */

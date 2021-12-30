@@ -29,6 +29,7 @@
 #include "../include/libmrhpsb/libmrhpsb.h"
 #include "./libmrhpsb/Event/MRH_EventHandler.h"
 #include "./libmrhpsb/ThreadPool/MRH_ThreadPool.h"
+#include "./libmrhpsb/MRH_Locale.h"
 
 
 //*************************************************************************************
@@ -107,9 +108,8 @@ extern "C"
 libmrhpsb::libmrhpsb(std::string const& s_Identifier,
                      int argc,
                      const char* argv[],
-                     size_t us_ThreadCount,
-                     bool b_AddDefault) : p_EventHandler(NULL),
-                                          p_ThreadPool(NULL)
+                     size_t us_ThreadCount) : p_EventHandler(NULL),
+                                              p_ThreadPool(NULL)
 {
     // Log Setup
     MRH_PSBLogger& c_Logger = MRH_PSBLogger::Singleton();
@@ -160,6 +160,9 @@ libmrhpsb::libmrhpsb(std::string const& s_Identifier,
     std::signal(SIGFPE, SignalHandler);
     std::signal(SIGABRT, SignalHandler);
     std::signal(SIGSEGV, SignalHandler);
+    
+    // Set locale
+    MRH_Locale::LoadSystemLocale();
         
     // Setup components
     try
@@ -177,15 +180,26 @@ libmrhpsb::libmrhpsb(std::string const& s_Identifier,
                                               argv[MRH_PARAM_EV_EVENT_LIMIT],
                                               argv[MRH_PARAM_EV_TIMEOUT_MS]);
 #endif
-        p_ThreadPool = new MRH_ThreadPool(us_ThreadCount,
-                                          b_AddDefault);
+        p_ThreadPool = new MRH_ThreadPool(us_ThreadCount);
     }
     catch (MRH_PSBException& e)
     {
+        if (p_EventHandler != NULL)
+        {
+            delete p_EventHandler;
+            p_EventHandler = NULL;
+        }
+        
         throw;
     }
     catch (std::exception& e)
     {
+        if (p_EventHandler != NULL)
+        {
+            delete p_EventHandler;
+            p_EventHandler = NULL;
+        }
+        
         throw MRH_PSBException(e.what());
     }
 }

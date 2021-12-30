@@ -9,7 +9,7 @@ The macro definition can be found in the following file:
 
 .. code-block:: c
 
-    libmrhpsb/ThreadPool/Callback/MRH_PSBReset.cpp
+    libmrhpsb/MRH_Locale.cpp
 
 
 Definition

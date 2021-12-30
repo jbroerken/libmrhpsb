@@ -26,7 +26,6 @@
 
 // Project
 #include "./MRH_ThreadPool.h"
-#include "./Callback/MRH_PSBReset.h"
 #include "../../../include/libmrhpsb/libmrhpsb/MRH_PSBLogger.h"
 
 // Pre-defined
@@ -39,8 +38,7 @@
 // Constructor / Destructor
 //*************************************************************************************
 
-MRH_ThreadPool::MRH_ThreadPool(size_t us_ThreadCount,
-                               bool b_AddDefaults) : b_Update(true)
+MRH_ThreadPool::MRH_ThreadPool(size_t us_ThreadCount) : b_Update(true)
 {
     if (us_ThreadCount == 0)
     {
@@ -53,17 +51,6 @@ MRH_ThreadPool::MRH_ThreadPool(size_t us_ThreadCount,
         {
             l_Thread.emplace_back(Update, this);
             --us_ThreadCount;
-        }
-        
-        // NOTE: Thread safe during creation, no jobs = no used callbacks
-        if (b_AddDefaults == true)
-        {
-            //
-            // MRH_PS_RESET_REQUEST_U
-            //
-            CallbackList l_Reset;
-            l_Reset.emplace_back(new MRH_PSBReset());
-            m_Callback.insert(std::make_pair(MRH_EVENT_PS_RESET_REQUEST_U, l_Reset));
         }
     }
     catch (std::exception& e)

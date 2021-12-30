@@ -53,14 +53,12 @@ public:
      *  \param argc Launch argument count.
      *  \param argv Launch arguments.
      *  \param us_ThreadCount The number of worker threads to use.
-     *  \param b_AddDefault Wether to add default library callbacks or not.
      */
 
     libmrhpsb(std::string const& s_Identifier,
               int argc,
               const char* argv[],
-              size_t us_ThreadCount = 1,
-              bool b_AddDefault = true);
+              size_t us_ThreadCount = 1);
     
     /**
      *  Default destructor.

@@ -16,4 +16,7 @@ Library Namespaces
 
 Internal Namespaces
 -------------------
-None.
+.. toctree::
+  :maxdepth: 1
+
+  _Internal/libmrhpsb_Directory/MRH_Locale

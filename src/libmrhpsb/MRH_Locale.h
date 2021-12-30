@@ -1,5 +1,5 @@
 /**
- *  MRH_Callback.cpp
+ *  MRH_Locale.h
  *
  *  This file is part of the MRH project.
  *  See the AUTHORS file for Copyright information.
@@ -19,29 +19,27 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef MRH_Locale_h
+#define MRH_Locale_h
+
 // C / C++
 
 // External
 
 // Project
-#include "../../include/libmrhpsb/libmrhpsb/MRH_Callback.h"
 
 
-//*************************************************************************************
-// Constructor / Destructor
-//*************************************************************************************
-
-MRH_Callback::MRH_Callback() noexcept
-{}
-
-MRH_Callback::~MRH_Callback() noexcept
-{}
-
-//*************************************************************************************
-// Callback
-//*************************************************************************************
-
-void MRH_Callback::Callback(const MRH_EVBase* p_Event, MRH_Uint32 u32_GroupID) noexcept
+namespace MRH_Locale
 {
-    // Dummy
-}
+    //*************************************************************************************
+    // Locale
+    //*************************************************************************************
+    
+    /**
+     *  Load and set the system locale.
+     */
+    
+    void LoadSystemLocale() noexcept;
+};
+
+#endif /* MRH_Locale_h */
