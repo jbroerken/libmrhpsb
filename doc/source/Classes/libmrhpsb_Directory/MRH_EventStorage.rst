@@ -23,9 +23,7 @@ Functions
       - Public
     * - :doc:`../../Functions/libmrhpsb_Directory/MRH_EventStorage/Clear`
       - Public
-    * - :doc:`../../Functions/libmrhpsb_Directory/MRH_EventStorage/Add_0`
-      - Public
-    * - :doc:`../../Functions/libmrhpsb_Directory/MRH_EventStorage/Add_1`
+    * - :doc:`../../Functions/libmrhpsb_Directory/MRH_EventStorage/Add`
       - Public
     * - :doc:`../../Functions/libmrhpsb_Directory/MRH_EventStorage/RemoveFront`
       - Public

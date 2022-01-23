@@ -256,23 +256,8 @@ void libmrhpsb::Update() noexcept
         {
             try
             {
-                MRH_EVBase* p_Base = libmrhcevs::Create(*Event);
-                p_ThreadPool->AddJob(p_Base, (*Event)->u32_GroupID);
-                
-                if ((*Event)->p_Data != NULL)
-                {
-                    free((*Event)->p_Data);
-                }
-                
-                free(*Event);
-                
+                p_ThreadPool->AddJob(*Event, (*Event)->u32_GroupID);
                 Event = v_Recieved.erase(Event);
-            }
-            catch (MRH_CEVSException& e)
-            {
-                c_Logger.Log(MRH_PSBLogger::WARNING, "Failed to add job (CEVS): " + e.what2(),
-                             "libmrhpsb.cpp", __LINE__);
-                ++Event;
             }
             catch (MRH_PSBException& e)
             {

@@ -1,5 +1,5 @@
-Add (C Style Event)
-===================
+Add
+===
 The Add function is used to add an event to the storage container.
 
 Header

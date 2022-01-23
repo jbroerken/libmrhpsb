@@ -23,8 +23,7 @@ Library Functions
   libmrhpsb_Directory/MRH_EventStorage/~MRH_EventStorage
   libmrhpsb_Directory/MRH_EventStorage/Singleton
   libmrhpsb_Directory/MRH_EventStorage/Clear
-  libmrhpsb_Directory/MRH_EventStorage/Add_0
-  libmrhpsb_Directory/MRH_EventStorage/Add_1
+  libmrhpsb_Directory/MRH_EventStorage/Add
   libmrhpsb_Directory/MRH_EventStorage/RemoveFront
   libmrhpsb_Directory/MRH_EventStorage/GetCount
   libmrhpsb_Directory/MRH_EventStorage/GetEvent

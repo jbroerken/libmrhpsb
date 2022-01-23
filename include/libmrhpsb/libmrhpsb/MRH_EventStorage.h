@@ -27,7 +27,7 @@
 #include <vector>
 
 // External
-#include <libmrhcevs.h>
+#include <MRH_Event.h>
 
 // Project
 #include "./MRH_PSBException.h"
@@ -62,15 +62,6 @@ public:
     //*************************************************************************************
     // Add
     //*************************************************************************************
-    
-    /**
-     *  Add a event to storage. This function is thread safe.
-     *
-     *  \param c_Event The event to add.
-     *  \param u32_GroupID The event group id for the user event.
-     */
-    
-    void Add(MRH_EVBase const& c_Event, MRH_Uint32 u32_GroupID);
     
     /**
      *  Add a event to storage. This function is thread safe.

@@ -78,31 +78,6 @@ void MRH_EventStorage::Clear() noexcept
 // Add
 //*************************************************************************************
 
-void MRH_EventStorage::Add(MRH_EVBase const& c_Event, MRH_Uint32 u32_GroupID)
-{
-    MRH_Event* p_Event = NULL;
-    
-    try
-    {
-        p_Event = c_Event.Build(u32_GroupID);
-        Add(p_Event);
-    }
-    catch (MRH_CEVSException& e)
-    {
-        throw MRH_PSBException("CEVS Issue: " + e.what2());
-    }
-    catch (MRH_PSBException& e)
-    {
-        if (p_Event->p_Data != NULL)
-        {
-            free(p_Event->p_Data);
-        }
-        
-        free(p_Event);
-        throw;
-    }
-}
-
 void MRH_EventStorage::Add(MRH_Event* p_Event)
 {
     std::lock_guard<std::mutex> c_Guard(c_Mutex);

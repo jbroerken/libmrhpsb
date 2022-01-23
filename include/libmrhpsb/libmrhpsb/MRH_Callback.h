@@ -56,7 +56,7 @@ public:
      *  \param u32_GroupID The event group id for the user event.
      */
     
-    virtual void Callback(const MRH_EVBase* p_Event, MRH_Uint32 u32_GroupID) noexcept
+    virtual void Callback(const MRH_Event* p_Event, MRH_Uint32 u32_GroupID) noexcept
     {}
     
 private:

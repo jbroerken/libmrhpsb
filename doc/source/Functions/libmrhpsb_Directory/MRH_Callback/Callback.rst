@@ -15,7 +15,7 @@ Syntax
 ------
 .. code-block:: c
 
-    virtual void Callback(const MRH_EVBase* p_Event,
+    virtual void Callback(const MRH_Event* p_Event,
                           MRH_Uint32 u32_GroupID) noexcept;
 
 

@@ -23,6 +23,7 @@
 #include <string>
 
 // External
+#include <libmrhevdata.h>
 
 // Project
 #include "./MRH_ThreadPool.h"
@@ -100,15 +101,13 @@ void MRH_ThreadPool::AddCallback(std::shared_ptr<MRH_Callback>& p_Callback, MRH_
     }
 }
 
-void MRH_ThreadPool::AddJob(MRH_EVBase*& p_Event, MRH_Uint32 u32_GroupID)
+void MRH_ThreadPool::AddJob(MRH_Event* p_Event, MRH_Uint32 u32_GroupID)
 {
     try
     {
         c_JobMutex.lock();
         l_Job.emplace_back(std::make_pair(u32_GroupID, p_Event));
         c_JobMutex.unlock();
-        
-        p_Event = NULL;
         
         c_Condition.notify_one();
     }
@@ -128,7 +127,7 @@ void MRH_ThreadPool::Update(MRH_ThreadPool* p_Instance) noexcept
     CallbackMap& m_Callback = p_Instance->m_Callback;
     JobList& l_Job = p_Instance->l_Job;
     
-    MRH_EVBase* p_Event;
+    MRH_Event* p_Event;
     MRH_Uint32 u32_GroupID;
     
     while (p_Instance->b_Update == true)
@@ -155,12 +154,12 @@ void MRH_ThreadPool::Update(MRH_ThreadPool* p_Instance) noexcept
         }
         
         // Job available! Is there a callback for it?
-        auto CBList = m_Callback.find(p_Event->GetType());
+        auto CBList = m_Callback.find(p_Event->u32_Type);
         
         if (CBList == m_Callback.end() || CBList->second.size() == 0)
         {
             c_Logger.Log(MRH_PSBLogger::WARNING, "No callback for event [ " +
-                                                 std::to_string(p_Event->GetType()) +
+                                                 std::to_string(p_Event->u32_Type) +
                                                  " ]!",
                          "ThreadPool.h", __LINE__);
             delete p_Event;
@@ -172,7 +171,7 @@ void MRH_ThreadPool::Update(MRH_ThreadPool* p_Instance) noexcept
         {
 #if MRH_PLATFORM_SERVICE_LOG_EVENTS > 0
             c_Logger.Log(MRH_PSBLogger::INFO, "Performing callback for event [ " +
-                                              std::to_string(p_Event->GetType()) +
+                                              std::to_string(p_Event->u32_Type) +
                                               " ] ...",
                          "ThreadPool.h", __LINE__);
 #endif
@@ -180,6 +179,6 @@ void MRH_ThreadPool::Update(MRH_ThreadPool* p_Instance) noexcept
         }
         
         // Event used on all callbacks, clean up
-        delete p_Event;
+        MRH_EVD_DestroyEvent(p_Event);
     }
 }

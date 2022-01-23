@@ -116,12 +116,12 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 find_library(libmrhbf NAMES mrhbf REQUIRED)
 find_library(libmrhev NAMES mrhev REQUIRED)
-find_library(libmrhcevs NAMES mrhcevs REQUIRED)
+find_library(libmrhevdata NAMES mrhevdata REQUIRED)
 
 target_link_libraries(libmrhpsb_Shared PUBLIC Threads::Threads)
 target_link_libraries(libmrhpsb_Shared PUBLIC mrhbf)
 target_link_libraries(libmrhpsb_Shared PUBLIC mrhev)
-target_link_libraries(libmrhpsb_Shared PUBLIC mrhcevs)
+target_link_libraries(libmrhpsb_Shared PUBLIC mrhevdata)
 
 ###
 #  Source Definitions
@@ -133,7 +133,7 @@ target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_FIL
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE="/var/log/mrh/bt_mrhpservice_")
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOGGER_PRINT_CLI=0)
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_EVENT_STORAGE_RESERVE_STEP=100)
-target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_EVENTS=0)
+target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_EVENTS=1)
 
 ###
 #  Install

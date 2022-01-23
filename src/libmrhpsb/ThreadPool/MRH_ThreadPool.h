@@ -89,7 +89,7 @@ public:
      *  \param u32_GroupID The event group id for the user event.
      */
     
-    void AddJob(MRH_EVBase*& p_Event, MRH_Uint32 u32_GroupID);
+    void AddJob(MRH_Event* p_Event, MRH_Uint32 u32_GroupID);
     
 private:
     
@@ -99,7 +99,7 @@ private:
     
     typedef std::list<std::shared_ptr<MRH_Callback>> CallbackList;
     typedef std::unordered_map<MRH_Uint32, CallbackList> CallbackMap;
-    typedef std::list<std::pair<MRH_Uint32, MRH_EVBase*>> JobList;
+    typedef std::list<std::pair<MRH_Uint32, MRH_Event*>> JobList;
     
     //*************************************************************************************
     // Update
