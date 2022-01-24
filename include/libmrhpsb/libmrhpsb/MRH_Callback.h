@@ -25,6 +25,7 @@
 // C / C++
 
 // External
+#include <libmrhevdata.h>
 
 // Project
 #include "./MRH_EventStorage.h"
