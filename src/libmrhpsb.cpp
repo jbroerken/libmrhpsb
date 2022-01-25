@@ -295,6 +295,7 @@ bool libmrhpsb::IsValidEventType(MRH_Uint32 u32_Type) noexcept
         case MRH_EVENT_SAY_AVAIL_S:
         case MRH_EVENT_SAY_STRING_S:
         case MRH_EVENT_SAY_GET_METHOD_S:
+        case MRH_EVENT_SAY_REMOTE_NOTIFICATION_S:
         case MRH_EVENT_SAY_CUSTOM_COMMAND_S:
         case MRH_EVENT_PASSWORD_AVAIL_S:
         case MRH_EVENT_PASSWORD_CHECK_S:
