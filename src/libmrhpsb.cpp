@@ -295,7 +295,7 @@ bool libmrhpsb::IsValidEventType(MRH_Uint32 u32_Type) noexcept
         case MRH_EVENT_SAY_AVAIL_S:
         case MRH_EVENT_SAY_STRING_S:
         case MRH_EVENT_SAY_GET_METHOD_S:
-        case MRH_EVENT_SAY_REMOTE_NOTIFICATION_S:
+        case MRH_EVENT_SAY_NOTIFICATION_APP_S:
         case MRH_EVENT_SAY_CUSTOM_COMMAND_S:
         case MRH_EVENT_PASSWORD_AVAIL_S:
         case MRH_EVENT_PASSWORD_CHECK_S:
@@ -320,12 +320,6 @@ bool libmrhpsb::IsValidEventType(MRH_Uint32 u32_Type) noexcept
         case MRH_EVENT_APP_LAUNCH_SOA_CLEAR_S:
         case MRH_EVENT_APP_LAUNCH_SOA_CLEAR_TIMER_S:
         case MRH_EVENT_APP_CUSTOM_COMMAND_S:
-        case MRH_EVENT_NOTIFICATION_AVAIL_S:
-        case MRH_EVENT_NOTIFICATION_CREATE_APP_S:
-        case MRH_EVENT_NOTIFICATION_DESTROY_APP_S:
-        case MRH_EVENT_NOTIFICATION_GET_WAITING_S:
-        case MRH_EVENT_NOTIFICATION_GET_NEXT_S:
-        case MRH_EVENT_NOTIFICATION_CUSTOM_COMMAND_S:
             return false;
             
         /* Default */
