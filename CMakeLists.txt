@@ -27,7 +27,7 @@ set(CMAKE_CXX_STANDARD 14)
 #  ------------
 #  General simple information about our project.
 ###
-project(libmrhpsb VERSION 1.0.0
+project(libmrhpsb VERSION 1.0.1
                   DESCRIPTION "Thread pool based multithreading support library for MRH platform services"
                   LANGUAGES CXX)
 set(LIB_SO_VERSION 1)
@@ -132,6 +132,7 @@ target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOCALE_FILE_PATH="/usr/l
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_FILE_PATH_BASE="/var/log/mrh/mrhpservice_")
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_BACKTRACE_FILE_PATH_BASE="/var/log/mrh/bt_mrhpservice_")
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOGGER_PRINT_CLI=0)
+target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_LOGGER_LINE_LIMIT=1000)
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_EVENT_STORAGE_RESERVE_STEP=100)
 target_compile_definitions(libmrhpsb_Shared PRIVATE MRH_PLATFORM_SERVICE_LOG_EVENTS=0)
 

@@ -39,13 +39,16 @@
 #ifndef MRH_LOGGER_PRINT_CLI
     #define MRH_LOGGER_PRINT_CLI 0
 #endif
-
+#ifndef MRH_LOGGER_LINE_LIMIT
+    #define MRH_LOGGER_LINE_LIMIT 1000
+#endif
 
 //*************************************************************************************
 // Constructor / Destructor
 //*************************************************************************************
 
-MRH_PSBLogger::MRH_PSBLogger() noexcept : s_ServiceName("unknown")
+MRH_PSBLogger::MRH_PSBLogger() noexcept : s_ServiceName("unknown"),
+                                          us_Lines(0)
 {}
 
 MRH_PSBLogger::~MRH_PSBLogger() noexcept
@@ -77,6 +80,8 @@ MRH_PSBLogger& MRH_PSBLogger::Singleton() noexcept
 
 void MRH_PSBLogger::OpenFiles(std::string const& s_ServiceName) noexcept
 {
+    c_Mutex.lock();
+    
     if (f_LogFile.is_open() == true)
     {
         f_LogFile.close();
@@ -106,6 +111,8 @@ void MRH_PSBLogger::OpenFiles(std::string const& s_ServiceName) noexcept
         Log(MRH_PSBLogger::WARNING, "Failed to open platform platform backtrace file: " + s_BacktraceFilePath,
             "MRH_PSBLogger.cpp", __LINE__);
     }
+    
+    c_Mutex.unlock();
 }
 
 //*************************************************************************************
@@ -116,6 +123,27 @@ void MRH_PSBLogger::Log(LogLevel e_Level, std::string s_Message, std::string s_F
 {
     c_Mutex.lock();
     
+    // Reopen with truncate?
+    if (us_Lines == MRH_LOGGER_LINE_LIMIT)
+    {
+        f_LogFile.close();
+        
+        std::string s_LogFilePath(MRH_PLATFORM_SERVICE_LOG_FILE_PATH_BASE + s_ServiceName + ".log");
+        f_LogFile.open(s_LogFilePath, std::ios::out | std::ios::trunc);
+        
+        if (f_LogFile.is_open() == true)
+        {
+            f_LogFile << "[MRH_PSBLogger.cpp][" << __LINE__ << "][INFO]: Truncated log file." << std::endl;
+            us_Lines = 0;
+        }
+    }
+    else
+    {
+        // Limit not reached, add
+        us_Lines += 1;
+    }
+    
+    // Now write
     if (f_LogFile.is_open() == true)
     {
         f_LogFile << "[" << s_File << "][" << std::to_string(us_Line) << "][" << GetLevelString(e_Level) << "]: " << s_Message << std::endl;
